@@ -55,7 +55,12 @@ $ env MONGOMS_ARCH=x64  yarn test
 
 # test coverage
 $ yarn test:cov
+
 ```
+
+## Happy Path Flow
+
+![Diagrama de flujo del método create](images/basicFlow.png)
 
 ### Git / Hocks
 
