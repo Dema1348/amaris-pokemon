@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    depends_on:
+      - mongo
+    environment:
+      NODE_ENV: development
+      APP_PREFIX: v1
+      APP_PORT: 3000
+      LOGGER_LEVEL: info
+      MONGO_URL: mongodb://mongo:27017/pokemon
+      HOST_POKEMON: https://pokeapi.co
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  mongo-data:
